@@ -769,6 +769,12 @@ public class BluetoothLePlugin extends CordovaPlugin {
       return;
     }
 
+    //i38: add para for disconnect
+    JSONObject obj = getArgsObject(args);
+    String address = getAddress(obj);
+    if (address != null) {
+      gattServer.cancelConnection(bluetoothAdapter.getRemoteDevice(address));
+    }
     advertiser.stopAdvertising(advertiseCallback);
 
     JSONObject returnObj = new JSONObject();
