@@ -709,7 +709,7 @@ public class BluetoothLePlugin extends CordovaPlugin {
     settingsBuilder.setConnectable(connectable);
 
     int timeout = obj.optInt("timeout", 1000);
-    if (timeout < 1 || timeout > 180000) {
+    if (timeout < 0 || timeout > 180000) {
       JSONObject returnObj = new JSONObject();
 
       addProperty(returnObj, "error", "startAdvertising");
@@ -769,7 +769,7 @@ public class BluetoothLePlugin extends CordovaPlugin {
       return;
     }
 
-    //i38: add para for disconnect
+    //zhongshu: 增加参数用于断开指定地址的链接
     JSONObject obj = getArgsObject(args);
     String address = getAddress(obj);
     if (address != null) {
